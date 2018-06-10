@@ -35,6 +35,7 @@ class SongsController < ApplicationController
 
   post '/songs/:slug' do
     @song = Song.find_by_slug(params[:slug])
+    @song.update(params[:song])
     params[:song][:genre_ids].each do |genre_id|
       @song.genres << Genre.find_by_id(genre_id)
     end
